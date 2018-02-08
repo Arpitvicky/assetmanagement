@@ -1,0 +1,63 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "classes": true,
+          "experimentalObjectRestSpread": true
+      }
+  },
+  "rules": {
+      "arrow-parens": 0,
+      "comma-dangle": 0,
+      "func-names": 0,
+      "newline-per-chained-call": 0,
+      "no-param-reassign": 1,
+      "max-len": 0,
+      "prefer-rest-params": 0,
+      "prefer-arrow-callback": 0,
+      "space-before-function-paren": 0,
+      "arrow-body-style": 0,
+      "react/prefer-stateless-function": [0],
+      "react/prop-types":[0],
+      "no-underscore-dangle":[0],
+      "import/no-extraneous-dependencies": [
+          "error", 
+          {
+              "devDependencies": ["!test/**/*.js", "!gulp/**/*.js"]
+          }
+      ],
+      "indent": [2, 4, {
+          "SwitchCase": 1
+      }],
+      "no-debugger": 1,
+      "react/prefer-es6-class": 0,
+      "import/no-named-default": 0,
+      "react/no-unknown-property": [2, { "ignore": ["class"] }],
+      "react/no-string-refs": 0,
+    //   "react/forbid-prop-types": [1, { "forbid": ["array", "object"] }],
+      "react/jsx-indent": [2, 4],
+      "react/jsx-indent-props": [2, 4],
+      "react/jsx-closing-bracket-location": 0,
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "react/jsx-no-bind": 0,
+      "require-jsdoc": [2, {
+          "require": {
+              "FunctionDeclaration": true,
+              "MethodDefinition": false,
+              "ClassDeclaration": true,
+              "ArrowFunctionExpression": true
+          }
+      }],
+      "valid-jsdoc": [2],
+      "jsx-a11y/no-static-element-interactions": 0
+  },
+  "globals": {
+      "window": true,
+      "document": true,
+      "console": true,
+      "fetch": true,
+      "Event": true,
+      "Image": true
+  }
+}
