@@ -1,17 +1,18 @@
+/* eslint-disable */
+const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const webpack = require('webpack');
+
 
 module.exports = {
-    entry: ['./src/client.js', './sass/main.scss'],
+    entry: ['./src/client.js', './src/sass/main.scss'],
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'public'),
-        publicPath: '/public'
+        path: path.resolve(__dirname, 'public')
     },
-    watch: true,
+    // watch: true,
     module: {
-        loaders: [
+        rules: [
             {
                 enforce: 'pre',
                 test: /\.js$/,
@@ -30,14 +31,17 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader'],
+                    use: [{ loader: 'css-loader', options: { minimize: true } }, 'sass-loader'],
                 })
             }
         ]
     },
     plugins: [
-        new ExtractTextPlugin('public/styles.css', {
-            allChunks: true
+        new ExtractTextPlugin('main.css'),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false // https://github.com/webpack/webpack/issues/1496
+            }
         })
     ],
     devServer: {
