@@ -8,7 +8,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 // importing combined reducers
 import reducers from './reducers/index';
-import EmployeeList from './components/pages/employeeList';
+import AssetManagement from './components/pages/assetManagement';
 import Main from './main';
 
 const logger = createLogger();
@@ -22,8 +22,8 @@ const Routes = (
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path="/" component={Main}>
-                <IndexRoute component={EmployeeList} />
-                <Route path="/elists" component={EmployeeList} />
+                <IndexRoute component={AssetManagement} />
+                <Route path="/assets" component={AssetManagement} />
             </Route>
         </Router>
     </Provider>

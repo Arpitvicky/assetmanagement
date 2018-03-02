@@ -1,23 +1,9 @@
-// import Immutable from 'immutable';
+import Immutable from 'immutable';
 
-const initialState = { employees: [] };
-
-
-// const initialState = { employees: [{
-//     _id: 1,
-//     name: 'The Jungkle employee',
-//     designation: 'SWD',
-//     sickleave: 10,
-//     priviledgeleave: 25,
-//     images: ''
-// }, {
-//     _id: 2,
-//     name: 'The Jungkle employee',
-//     designation: 'SWD',
-//     sickleave: 25,
-//     priviledgeleave: 10,
-//     images: ''
-// }] };
+// default state
+const initialState = Immutable.fromJS({
+    data: []
+});
 
 /**
  * Increment reducer description
@@ -27,9 +13,8 @@ const initialState = { employees: [] };
  */
 const employeeReducers = (state = initialState, action) => {
     switch (action.type) {
-        case 'GET_EMPLOYEE':
-            return { ...state, employees: [...action.payload] };
-            // return state.set('employees', Immutable.fromJS(action.payload));
+        case 'GET_EMPLOYEES':
+            return state.set('data', Immutable.fromJS(action.payload));
         case 'POST_EMPLOYEE':
             return { ...state, employees: [...state.employees, ...action.payload], msg: 'Saved ! Click to continue', style: 'success', validation: 'success' };
         case 'POST_EMPLOYEE_REJECTED':

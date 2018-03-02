@@ -1,44 +1,32 @@
 
 import axios from 'axios';
+/* eslint-disable */
+export const empData = {
+    users:[{
+        _id: 1,
+        name: 'Arpit kumar'
+    }, {
+        _id: 2,
+        name: 'Arpit vicky'
+    }]
+};
+/* eslint-disable */
+
+
 
 /**
- * Post a employee
+ * Reset the form
  * @return {Object} redux standard action
  */
-export function getLoginStatus() {
-    // Connecting client with web server through axios, returning function instead of action --redux-thunk
-    return function() {
-        axios.get('/api/login')
-            .then(function(response) {
-                console.log('log in');
-                console.log(response);
-                // dispatching an action only if success scenario met
-                // dispatch({ type: 'GET_EMPLOYEE', payload: response.data });
-            })
-            .catch(function(err) {
-                // dispatch({ type: 'GET_EMPLOYEE_REJECTED', payload: err });
-            });
-    };
-}
-/**
- * Post a employee
- * @return {Object} redux standard action
- */
-export function getSignUpStatus() {
-    // Connecting client with web server through axios, returning function instead of action --redux-thunk
-    return function() {
-        axios.get('/api/signup')
-            .then(function(response) {
-                console.log('sign up');
-                console.log(response.data);
-                // dispatching an action only if success scenario met
-                // dispatch({ type: 'GET_EMPLOYEE', payload: response.data });
-            })
-            .catch(function(err) {
-                // dispatch({ type: 'GET_EMPLOYEE_REJECTED', payload: err });
-            });
-    };
-}
+// export function getEmployees() {
+//     return {
+//         type: 'GET_EMPLOYEES',
+//         payload: empData
+//     };
+// }
+
+
+
 /**
  * Post a employee
  * @return {Object} redux standard action
@@ -46,54 +34,18 @@ export function getSignUpStatus() {
 export const getEmployees = () => {
     // Connecting client with web server through axios, returning function instead of action --redux-thunk
     return function(dispatch) {
-        axios.get('/api/users')
+        axios.get('http://gurxvdock01:8080/employee/all')
             .then(function(response) {
                 console.log(response.data);
                 // dispatching an action only if success scenario met
-                dispatch({ type: 'GET_EMPLOYEE', payload: response.data });
+                dispatch({ type: 'GET_EMPLOYEES', payload: response.data });
             })
             .catch(function(err) {
                 dispatch({ type: 'GET_EMPLOYEE_REJECTED', payload: err });
             });
     };
 };
-/**
- * Post a employee
- * @param  {Object} employee  array of employee
- * @return {Object} redux standard action
- */
-export function postEmployee(employee) {
-    // Connecting client with web server through axios, returning function instead of action --redux-thunk
-    return function(dispatch) {
-        axios.post('/api/employees', employee)
-            .then(function(response) {
-                // dispatching an action only if success scenario met
-                dispatch({ type: 'POST_EMPLOYEE', payload: response.data });
-            })
-            .catch(function(err) {
-                dispatch({ type: 'POST_EMPLOYEE_REJECTED', payload: err });
-            });
-    };
-}
 
-/**
- * Post a employee
- * @param  {Object} employee  array of employee
- * @return {Object} redux standard action
- */
-export function applyLeaves(employee) {
-    // Connecting client with web server through axios, returning function instead of action --redux-thunk
-    return function(dispatch) {
-        axios.post('/api/applyleaves', employee)
-            .then(function(response) {
-                // dispatching an action only if success scenario met
-                dispatch({ type: 'APPLY_LEAVES', payload: response.data });
-            })
-            .catch(function(err) {
-                dispatch({ type: 'APPLY_LEAVES_REJECTED', payload: err });
-            });
-    };
-}
 
 // function to delete a employee
 /**
@@ -147,53 +99,3 @@ export function updateEmployee(employeeId, employee) {
     };
 }
 
-
-/**
- * Reset the form
- * @return {Object} redux standard action
- */
-export function logoutEmployee() {
-    // Connecting client with web server through axios, returning function instead of action --redux-thunk
-    return function() {
-        axios.get('/api/logout')
-            .then(function(response) {
-                console.log('logged out succesfully');
-                console.log(response);
-                // dispatching an action only if success scenario met
-                // dispatch({ type: 'GET_EMPLOYEE', payload: response.data });
-            })
-            .catch(function(err) {
-                // dispatch({ type: 'GET_EMPLOYEE_REJECTED', payload: err });
-            });
-    };
-}
-
-/**
- * Reset the form
- * @return {Object} redux standard action
- */
-export function checkLogin() {
-    // Connecting client with web server through axios, returning function instead of action --redux-thunk
-    return function() {
-        axios.get('/api/elists')
-            .then(function(response) {
-                console.log('checking logged in status');
-                console.log(response.data);
-                // dispatching an action only if success scenario met
-                dispatch({ type: 'CHECK_LOGIN', payload: response.data });
-            })
-            .catch(function(err) {
-                // dispatch({ type: 'GET_EMPLOYEE_REJECTED', payload: err });
-            });
-    };
-}
-
-/**
- * Reset the form
- * @return {Object} redux standard action
- */
-export function resetButton() {
-    return {
-        type: 'RESET_FORM'
-    };
-}
